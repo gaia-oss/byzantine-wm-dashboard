@@ -37,13 +37,13 @@ export function InvitationsTable({
 
   return (
     <div className="glass-card overflow-hidden">
-      <div className="p-6 border-b border-border-light">
+      <div className="p-4 md:p-6 border-b border-border-light">
         <h2 className="text-lg font-semibold text-text-primary">
           {t.pendingInvites}
         </h2>
       </div>
       <div className="overflow-x-auto">
-        <table className="w-full data-table">
+        <table className="w-full data-table text-xs md:text-sm">
           <thead>
             <tr>
               <th>{t.emailPlaceholder}</th>

@@ -38,9 +38,9 @@ export function KpiCard({
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="glass-card p-6"
+      className="glass-card p-4 md:p-6"
     >
-      <div className="flex items-start justify-between mb-4">
+      <div className="flex items-start justify-between mb-3 md:mb-4">
         <div>
           <p className="text-sm font-medium text-[#9B8FA0] mb-1">{title}</p>
           {subtitle && <p className="text-xs text-[#9B8FA0]">{subtitle}</p>}
@@ -49,7 +49,7 @@ export function KpiCard({
       </div>
 
       <div className="flex items-end justify-between">
-        <p className="text-3xl font-bold text-[#1A0918]">{value}</p>
+        <p className="text-2xl md:text-3xl font-bold text-[#1A0918]">{value}</p>
 
         {change !== undefined && (
           <div className={`flex items-center gap-1 ${getTrendColor()}`}>

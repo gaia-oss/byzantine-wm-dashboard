@@ -44,8 +44,8 @@ export default function ClientDetailPage({ params }: ClientDetailPageProps) {
 
   if (loading) {
     return (
-      <div className="space-y-6">
-        <h1 className="text-3xl font-bold text-[#1A0918] mb-2">
+      <div className="space-y-4 md:space-y-6">
+        <h1 className="text-2xl md:text-3xl font-bold text-[#1A0918] mb-2">
           {t.clients.name}
         </h1>
         <SkeletonTable />
@@ -58,7 +58,7 @@ export default function ClientDetailPage({ params }: ClientDetailPageProps) {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="space-y-6"
+        className="space-y-4 md:space-y-6"
       >
         <Link
           href="/clients"
@@ -79,7 +79,7 @@ export default function ClientDetailPage({ params }: ClientDetailPageProps) {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="space-y-6"
+      className="space-y-4 md:space-y-6"
     >
       <Link
         href="/clients"
@@ -93,9 +93,9 @@ export default function ClientDetailPage({ params }: ClientDetailPageProps) {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="glass-card p-6"
+        className="glass-card p-4 md:p-6"
       >
-        <h1 className="text-3xl font-bold text-[#1A0918] mb-2">
+        <h1 className="text-2xl md:text-3xl font-bold text-[#1A0918] mb-2">
           {client.name}
         </h1>
         <p className="text-[#6B5A70] mb-4">{client.email}</p>
@@ -115,7 +115,7 @@ export default function ClientDetailPage({ params }: ClientDetailPageProps) {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.15 }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
       >
         <KpiCard title="Current Balance" value={formatCurrency(client.aum)} />
         <KpiCard title="Avg Quarterly AUM" value={formatCurrency(client.aum)} />

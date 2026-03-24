@@ -24,23 +24,23 @@ export function InviteForm({ referralLink, translations: t }: InviteFormProps) {
   };
 
   return (
-    <div className="glass-card p-6 space-y-6">
+    <div className="glass-card p-4 md:p-6 space-y-4 md:space-y-6">
       <div>
         <h2 className="text-xl font-semibold text-text-primary mb-4">
           Invite a new client
         </h2>
-        <div className="grid grid-cols-12 gap-3 mb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 mb-4">
           <input
             type="email"
             placeholder={t.emailPlaceholder}
-            className="col-span-5 px-4 py-3 bg-surface border border-border rounded-lg text-text-primary placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-byzantine focus:border-transparent"
+            className="sm:col-span-5 px-4 py-3 bg-surface border border-border rounded-lg text-text-primary placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-byzantine focus:border-transparent"
           />
           <input
             type="text"
             placeholder={t.namePlaceholder}
-            className="col-span-4 px-4 py-3 bg-surface border border-border rounded-lg text-text-primary placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-byzantine focus:border-transparent"
+            className="sm:col-span-4 px-4 py-3 bg-surface border border-border rounded-lg text-text-primary placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-byzantine focus:border-transparent"
           />
-          <button className="col-span-3 bg-byzantine hover:bg-byzantine-dark text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+          <button className="sm:col-span-3 bg-byzantine hover:bg-byzantine-dark text-white font-semibold py-3 px-6 rounded-lg transition-colors">
             {t.send}
           </button>
         </div>

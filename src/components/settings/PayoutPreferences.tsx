@@ -28,7 +28,7 @@ export function PayoutPreferences({
   translations: t,
 }: PayoutPreferencesProps) {
   return (
-    <div className="glass-card p-8 space-y-6">
+    <div className="glass-card p-4 md:p-6 lg:p-8 space-y-6">
       <h2 className="text-xl font-semibold text-text-primary">
         {t.payoutPreferences}
       </h2>
@@ -92,7 +92,7 @@ export function PayoutPreferences({
           transition={{ duration: 0.3 }}
           className="pt-6 border-t border-border-light space-y-4"
         >
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label
                 htmlFor="payout-iban"

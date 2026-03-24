@@ -90,7 +90,7 @@ export function ActivityFeed({
       </div>
 
       {filteredTransactions.length === 0 ? (
-        <div className="glass-card p-8 flex flex-col items-center justify-center h-64">
+        <div className="glass-card p-4 md:p-8 flex flex-col items-center justify-center h-64">
           <Clock size={32} className="text-[#9B8FA0] mb-3" />
           <p className="text-[#9B8FA0]">{t.common.noData}</p>
         </div>
@@ -117,11 +117,11 @@ export function ActivityFeed({
                 visible: { opacity: 1, x: 0 },
               }}
               transition={{ duration: 0.2 }}
-              className="glass-card p-4 flex items-center justify-between hover:bg-[#F9F0F7] transition-colors"
+              className="glass-card p-3 md:p-4 flex items-center justify-between hover:bg-[#F9F0F7] transition-colors"
             >
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3 md:gap-4">
                 <div
-                  className={`p-2.5 rounded-lg ${
+                  className={`p-2 md:p-2.5 rounded-lg ${
                     tx.type === "deposit" ? "bg-[#DCFCE7]" : "bg-[#FEE2E2]"
                   }`}
                 >
@@ -140,7 +140,7 @@ export function ActivityFeed({
                 </div>
               </div>
 
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3 md:gap-4">
                 <div className="text-right">
                   <p
                     className={`text-sm font-semibold ${

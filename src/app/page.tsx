@@ -105,11 +105,11 @@ export default function DashboardHome() {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className="space-y-8"
+      className="space-y-4 md:space-y-6 lg:space-y-8"
     >
       {/* Welcome */}
       <motion.div variants={itemVariants}>
-        <h1 className="text-4xl font-bold text-[#1A0918] mb-1">
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1A0918] mb-1">
           {t.overview.welcome}, {profile?.name || "Marc"}.
         </h1>
         <p className="text-[#9B8FA0]">{t.overview.subtitle}</p>
@@ -118,7 +118,7 @@ export default function DashboardHome() {
       {/* KPI Cards */}
       <motion.div
         variants={containerVariants}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4"
+        className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
       >
         {loading
           ? Array.from({ length: 5 }).map((_, i) => (
@@ -149,7 +149,7 @@ export default function DashboardHome() {
       {/* Pipeline + Activity */}
       <motion.div
         variants={itemVariants}
-        className="grid grid-cols-1 lg:grid-cols-3 gap-6"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
       >
         <div className="glass-card p-6">
           <h3 className="text-lg font-semibold text-[#1A0918] mb-4">

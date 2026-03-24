@@ -82,7 +82,7 @@ export function AumChart({ data: initialData }: AumChartProps) {
 
   if (!filteredData.length) {
     return (
-      <div className="glass-card p-8 flex items-center justify-center h-80">
+      <div className="glass-card p-4 md:p-8 flex items-center justify-center h-60 md:h-80">
         <p className="text-[#9B8FA0]">{t.common.noData}</p>
       </div>
     );
@@ -93,9 +93,9 @@ export function AumChart({ data: initialData }: AumChartProps) {
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="glass-card p-6"
+      className="glass-card p-4 md:p-6"
     >
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4 md:mb-6">
         <h3 className="text-lg font-semibold text-[#1A0918]">
           {t.overview.aumOverTime}
         </h3>
@@ -116,65 +116,67 @@ export function AumChart({ data: initialData }: AumChartProps) {
         </div>
       </div>
 
-      <ResponsiveContainer width="100%" height={300}>
-        <LineChart
-          data={filteredData}
-          margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
-        >
-          <defs>
-            <linearGradient id="colorAum" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#702963" stopOpacity={0.3} />
-              <stop offset="95%" stopColor="#702963" stopOpacity={0} />
-            </linearGradient>
-          </defs>
-          <CartesianGrid
-            strokeDasharray="3 3"
-            stroke="#E8E0EC"
-            vertical={false}
-          />
-          <XAxis
-            dataKey="date"
-            stroke="#9B8FA0"
-            style={{ fontSize: "12px" }}
-            tickFormatter={formatDate}
-            tick={{ fill: "#9B8FA0" }}
-          />
-          <YAxis
-            stroke="#9B8FA0"
-            style={{ fontSize: "12px" }}
-            tickFormatter={(value) => `€${(value / 1000000).toFixed(1)}M`}
-            tick={{ fill: "#9B8FA0" }}
-          />
-          <Tooltip
-            contentStyle={{
-              backgroundColor: "#1A0918",
-              border: "1px solid #702963",
-              borderRadius: "8px",
-              padding: "8px 12px",
-            }}
-            labelStyle={{ color: "#E8E0EC" }}
-            formatter={(value) => [formatCurrency(Number(value)), "AUM"]}
-            labelFormatter={(label) =>
-              new Date(String(label)).toLocaleDateString("fr-FR", {
-                weekday: "short",
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              })
-            }
-          />
-          <Line
-            type="monotone"
-            dataKey="aum"
-            stroke="#702963"
-            strokeWidth={2}
-            dot={false}
-            isAnimationActive={true}
-            animationDuration={800}
-            fill="url(#colorAum)"
-          />
-        </LineChart>
-      </ResponsiveContainer>
+      <div className="h-[200px] md:h-[300px]">
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart
+            data={filteredData}
+            margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+          >
+            <defs>
+              <linearGradient id="colorAum" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#702963" stopOpacity={0.3} />
+                <stop offset="95%" stopColor="#702963" stopOpacity={0} />
+              </linearGradient>
+            </defs>
+            <CartesianGrid
+              strokeDasharray="3 3"
+              stroke="#E8E0EC"
+              vertical={false}
+            />
+            <XAxis
+              dataKey="date"
+              stroke="#9B8FA0"
+              style={{ fontSize: "12px" }}
+              tickFormatter={formatDate}
+              tick={{ fill: "#9B8FA0" }}
+            />
+            <YAxis
+              stroke="#9B8FA0"
+              style={{ fontSize: "12px" }}
+              tickFormatter={(value) => `€${(value / 1000000).toFixed(1)}M`}
+              tick={{ fill: "#9B8FA0" }}
+            />
+            <Tooltip
+              contentStyle={{
+                backgroundColor: "#1A0918",
+                border: "1px solid #702963",
+                borderRadius: "8px",
+                padding: "8px 12px",
+              }}
+              labelStyle={{ color: "#E8E0EC" }}
+              formatter={(value) => [formatCurrency(Number(value)), "AUM"]}
+              labelFormatter={(label) =>
+                new Date(String(label)).toLocaleDateString("fr-FR", {
+                  weekday: "short",
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })
+              }
+            />
+            <Line
+              type="monotone"
+              dataKey="aum"
+              stroke="#702963"
+              strokeWidth={2}
+              dot={false}
+              isAnimationActive={true}
+              animationDuration={800}
+              fill="url(#colorAum)"
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
     </motion.div>
   );
 }

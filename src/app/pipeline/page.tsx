@@ -48,10 +48,10 @@ export default function PipelinePage() {
   };
 
   return (
-    <div className="min-h-screen bg-surface-secondary p-8">
-      <div className="max-w-7xl mx-auto space-y-8">
+    <div className="min-h-screen bg-surface-secondary p-4 md:p-6 lg:p-8">
+      <div className="max-w-7xl mx-auto space-y-4 md:space-y-6 lg:space-y-8">
         <div>
-          <h1 className="text-3xl font-bold text-text-primary mb-2">
+          <h1 className="text-2xl md:text-3xl font-bold text-text-primary mb-2">
             {t.invite.title}
           </h1>
           <p className="text-text-secondary">{t.invite.subtitle}</p>
@@ -66,7 +66,7 @@ export default function PipelinePage() {
         </motion.div>
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
           {[
             {
               label: "Conversion rate",
@@ -89,12 +89,12 @@ export default function PipelinePage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 * (i + 1) }}
-              className="glass-card p-6"
+              className="glass-card p-4 md:p-6"
             >
               <div className="text-text-secondary text-sm mb-2">
                 {stat.label}
               </div>
-              <div className="text-3xl font-bold text-byzantine mb-1">
+              <div className="text-2xl md:text-3xl font-bold text-byzantine mb-1">
                 {stat.value}
               </div>
               <div className="text-xs text-text-muted">{stat.sub}</div>

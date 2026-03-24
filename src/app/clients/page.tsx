@@ -133,9 +133,9 @@ export default function ClientsPage() {
 
   if (loading) {
     return (
-      <div className="space-y-6">
+      <div className="space-y-4 md:space-y-6">
         <div>
-          <h1 className="text-3xl font-bold text-[#1A0918] mb-2">
+          <h1 className="text-2xl md:text-3xl font-bold text-[#1A0918] mb-2">
             {t.clients.title}
           </h1>
           <p className="text-[#6B5A70]">{t.clients.subtitle}</p>
@@ -150,10 +150,10 @@ export default function ClientsPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
-      className="space-y-6"
+      className="space-y-4 md:space-y-6"
     >
       <div>
-        <h1 className="text-3xl font-bold text-[#1A0918] mb-2">
+        <h1 className="text-2xl md:text-3xl font-bold text-[#1A0918] mb-2">
           {t.clients.title}
         </h1>
         <p className="text-[#6B5A70]">{t.clients.subtitle}</p>

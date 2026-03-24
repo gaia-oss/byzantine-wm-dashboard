@@ -31,7 +31,7 @@ export function PipelineKanban({ clientsByStatus }: PipelineKanbanProps) {
         Pipeline stages
       </h2>
       <div className="overflow-x-auto pb-4">
-        <div className="flex gap-6 min-w-max">
+        <div className="flex gap-3 md:gap-4 lg:gap-6 min-w-max">
           {COLUMNS.map((column, columnIndex) => {
             const clients = clientsByStatus[column.status] || [];
             return (
@@ -40,7 +40,7 @@ export function PipelineKanban({ clientsByStatus }: PipelineKanbanProps) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * columnIndex }}
-                className={`flex-shrink-0 w-80 ${column.bgColor} rounded-lg p-4`}
+                className={`flex-shrink-0 w-64 md:w-72 lg:w-80 ${column.bgColor} rounded-lg p-3 md:p-4`}
               >
                 <div className="mb-4">
                   <h3 className="font-semibold text-text-primary text-sm mb-1">
@@ -58,7 +58,7 @@ export function PipelineKanban({ clientsByStatus }: PipelineKanbanProps) {
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.05 * cardIndex }}
-                      className="glass-card p-4"
+                      className="glass-card p-3 md:p-4"
                     >
                       <div className="mb-3">
                         <p className="font-medium text-text-primary text-sm">

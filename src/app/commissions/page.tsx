@@ -71,7 +71,7 @@ export default function CommissionsPage() {
 
   return (
     <div className="min-h-screen pb-12">
-      <div className="space-y-8">
+      <div className="space-y-4 md:space-y-6 lg:space-y-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -79,7 +79,7 @@ export default function CommissionsPage() {
           transition={{ duration: 0.3 }}
           className="pt-8"
         >
-          <h1 className="text-3xl font-bold text-[#1A0918] mb-2">
+          <h1 className="text-2xl md:text-3xl font-bold text-[#1A0918] mb-2">
             {t.commissions.title}
           </h1>
           <p className="text-[#6B5A70]">{t.commissions.subtitle}</p>
@@ -90,7 +90,7 @@ export default function CommissionsPage() {
           variants={container}
           initial="hidden"
           animate="show"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
         >
           {earningsCards.map((card) => (
             <motion.div key={card.title} variants={item}>
@@ -104,9 +104,9 @@ export default function CommissionsPage() {
           variants={item}
           initial="hidden"
           animate="show"
-          className="glass-card p-6"
+          className="glass-card p-4 md:p-6"
         >
-          <h2 className="text-xl font-bold text-[#1A0918] mb-4">
+          <h2 className="text-lg md:text-xl font-bold text-[#1A0918] mb-4">
             {t.commissions.clientBreakdown}
           </h2>
           <div className="overflow-x-auto">
@@ -150,9 +150,9 @@ export default function CommissionsPage() {
           variants={item}
           initial="hidden"
           animate="show"
-          className="glass-card p-6"
+          className="glass-card p-4 md:p-6"
         >
-          <h2 className="text-xl font-bold text-[#1A0918] mb-4">
+          <h2 className="text-lg md:text-xl font-bold text-[#1A0918] mb-4">
             {t.commissions.commissionTiers}
           </h2>
           <div className="overflow-x-auto mb-6">

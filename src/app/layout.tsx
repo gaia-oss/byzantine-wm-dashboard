@@ -33,9 +33,11 @@ export default function RootLayout({
         <I18nProvider>
           <div className="flex min-h-screen">
             <Sidebar />
-            <div className="flex-1 flex flex-col ml-[260px]">
+            <div className="flex-1 flex flex-col ml-0 md:ml-[260px]">
               <Header />
-              <main className="flex-1 p-8 pt-6">{children}</main>
+              <main className="flex-1 p-4 md:p-6 lg:p-8 pt-4 md:pt-6">
+                {children}
+              </main>
             </div>
           </div>
         </I18nProvider>

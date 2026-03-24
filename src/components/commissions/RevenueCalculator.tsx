@@ -72,7 +72,7 @@ export function RevenueCalculator() {
   ];
 
   return (
-    <div className="glass-card p-6">
+    <div className="glass-card p-4 md:p-6">
       <h2 className="text-xl font-bold text-[#1A0918] mb-6">
         Revenue Projection Calculator
       </h2>
@@ -108,14 +108,14 @@ export function RevenueCalculator() {
         </div>
 
         {/* Year Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
           {yearCards.map(({ label, value, gradient }, i) => (
             <motion.div
               key={label}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: i * 0.05 }}
-              className={`bg-gradient-to-br ${gradient} rounded-lg p-6 text-white`}
+              className={`bg-gradient-to-br ${gradient} rounded-lg p-4 md:p-6 text-white`}
             >
               <p className="text-sm font-medium opacity-90 mb-2">{label}</p>
               <p className="text-3xl font-bold">
@@ -129,8 +129,8 @@ export function RevenueCalculator() {
         </div>
 
         {/* Chart */}
-        <div className="mt-8">
-          <ResponsiveContainer width="100%" height={300}>
+        <div className="mt-4 md:mt-8 h-[200px] md:h-[300px]">
+          <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={chartData}
               margin={{ top: 20, right: 30, left: 0, bottom: 20 }}

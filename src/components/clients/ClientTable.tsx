@@ -53,7 +53,7 @@ export function ClientTable({
 }: ClientTableProps) {
   if (clients.length === 0) {
     return (
-      <div className="glass-card p-8 text-center text-[#9B8FA0]">
+      <div className="glass-card p-4 md:p-6 lg:p-8 text-center text-[#9B8FA0]">
         {t.noClients}
       </div>
     );
@@ -62,7 +62,7 @@ export function ClientTable({
   return (
     <div className="glass-card overflow-hidden">
       <div className="overflow-x-auto">
-        <table className="data-table w-full">
+        <table className="data-table w-full text-xs md:text-sm">
           <thead>
             <tr>
               <th

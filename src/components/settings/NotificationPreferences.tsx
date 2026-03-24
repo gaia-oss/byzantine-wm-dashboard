@@ -50,7 +50,7 @@ export function NotificationPreferences() {
   };
 
   return (
-    <div className="glass-card p-8 space-y-6">
+    <div className="glass-card p-4 md:p-6 lg:p-8 space-y-6">
       <h2 className="text-xl font-semibold text-text-primary">
         Notification Preferences
       </h2>

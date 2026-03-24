@@ -25,17 +25,21 @@ export function Header() {
   const totalAUM = "€32.5M";
 
   return (
-    <header className="border-b border-[var(--color-border)] bg-white px-8 py-4 flex items-center justify-between">
+    <header className="border-b border-[var(--color-border)] bg-white px-4 md:px-6 lg:px-8 py-4 flex items-center justify-between">
       {/* Left: Page Title */}
-      <div>
-        <h1 className="text-2xl font-bold text-[#1A0918]">{pageTitle}</h1>
+      <div className="pl-10 md:pl-0">
+        <h1 className="text-xl md:text-2xl font-bold text-[#1A0918]">
+          {pageTitle}
+        </h1>
       </div>
 
       {/* Right: AUM Badge, Notifications, User */}
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-3 md:gap-6">
         {/* AUM Badge */}
-        <div className="flex items-center gap-2 px-4 py-2 bg-[#F9F0F7] rounded-lg border border-[#E0B3D9]">
-          <span className="text-xs font-medium text-[#6B5A70]">Total AUM</span>
+        <div className="flex items-center gap-2 px-3 md:px-4 py-2 bg-[#F9F0F7] rounded-lg border border-[#E0B3D9]">
+          <span className="hidden sm:inline text-xs font-medium text-[#6B5A70]">
+            Total AUM
+          </span>
           <span className="text-sm font-bold text-[#702963]">{totalAUM}</span>
         </div>
 
@@ -46,15 +50,15 @@ export function Header() {
         </button>
 
         {/* User Dropdown */}
-        <button className="flex items-center gap-2 px-3 py-2 hover:bg-[#F3EFF5] rounded-lg transition-all">
+        <button className="flex items-center gap-2 px-2 md:px-3 py-2 hover:bg-[#F3EFF5] rounded-lg transition-all">
           <div className="w-8 h-8 bg-gradient-to-br from-[#702963] to-[#5A1F4F] rounded-full flex items-center justify-center">
             <span className="text-white text-sm font-bold">J</span>
           </div>
-          <div className="text-left">
+          <div className="hidden sm:block text-left">
             <p className="text-sm font-medium text-[#1A0918]">John Doe</p>
             <p className="text-xs text-[#9B8FA0]">Wealth Manager</p>
           </div>
-          <ChevronDown size={16} className="text-[#6B5A70]" />
+          <ChevronDown size={16} className="hidden sm:block text-[#6B5A70]" />
         </button>
       </div>
     </header>

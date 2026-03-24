@@ -56,10 +56,10 @@ export default function SettingsPage() {
   if (!currentProfile) return null;
 
   return (
-    <div className="min-h-screen bg-surface-secondary p-8">
-      <div className="max-w-3xl mx-auto space-y-8">
+    <div className="min-h-screen bg-surface-secondary p-4 md:p-6 lg:p-8">
+      <div className="max-w-3xl mx-auto space-y-4 md:space-y-6 lg:space-y-8">
         <div>
-          <h1 className="text-3xl font-bold text-text-primary mb-2">
+          <h1 className="text-2xl md:text-3xl font-bold text-text-primary mb-2">
             {t.settings.title}
           </h1>
           <p className="text-text-secondary">{t.settings.subtitle}</p>
@@ -110,12 +110,12 @@ export default function SettingsPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="glass-card p-8 space-y-6"
+          className="glass-card p-4 md:p-6 lg:p-8 space-y-4 md:space-y-6"
         >
-          <h2 className="text-xl font-semibold text-text-primary">
+          <h2 className="text-lg md:text-xl font-semibold text-text-primary">
             {t.settings.language}
           </h2>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {(["en", "fr"] as const).map((lang) => (
               <button
                 key={lang}
@@ -137,9 +137,9 @@ export default function SettingsPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="glass-card p-8 space-y-6"
+          className="glass-card p-4 md:p-6 lg:p-8 space-y-4 md:space-y-6"
         >
-          <h2 className="text-xl font-semibold text-text-primary">
+          <h2 className="text-lg md:text-xl font-semibold text-text-primary">
             Support & Help
           </h2>
           <div className="space-y-4">
@@ -152,7 +152,7 @@ export default function SettingsPage() {
                 support@byzantine.finance
               </a>
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <button
                 type="button"
                 className="p-4 border border-border rounded-lg hover:bg-surface-hover transition-colors group text-left"

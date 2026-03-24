@@ -103,7 +103,7 @@ Les pages dans `app/` ne doivent contenir **aucune logique métier ni UI lourde*
 - Un fichier `.tsx` par composant, dans le dossier feature correspondant
 - Props typées via interface dans le même fichier
 - Named exports (pas de default exports, sauf pages App Router)
-- `'use client'` en haut de chaque composant qui utilise des hooks
+- `"use client"` en haut de chaque composant qui utilise des hooks
 
 ### Formatting partagé
 
@@ -134,7 +134,7 @@ const { data, loading, error } = useAsyncData(
 - Classes utilitaires custom : `glass-card`, `data-table`, `badge`, `badge-success`, etc.
 - Couleur primaire : Byzantium Purple `#702963`
 - Palette sémantique : `text-primary`, `text-secondary`, `text-muted`, `surface`, `border`, etc.
-- Desktop-first (1440px+), responsive via Tailwind breakpoints
+- Mobile-first, responsive via Tailwind breakpoints (sm → md → lg → xl)
 
 ### i18n
 

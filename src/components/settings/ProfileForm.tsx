@@ -46,7 +46,7 @@ export function ProfileForm({
   ];
 
   return (
-    <div className="glass-card p-8 space-y-6">
+    <div className="glass-card p-4 md:p-6 lg:p-8 space-y-6">
       <div>
         <h2 className="text-xl font-semibold text-text-primary mb-2">
           {t.profile}
@@ -56,7 +56,7 @@ export function ProfileForm({
         </p>
       </div>
 
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
         {fields.map(({ key, label, type }) => (
           <div key={key}>
             <label

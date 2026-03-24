@@ -77,7 +77,7 @@ export default function FeesPage() {
 
   return (
     <div className="min-h-screen pb-12">
-      <div className="space-y-8">
+      <div className="space-y-4 md:space-y-6 lg:space-y-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -85,7 +85,7 @@ export default function FeesPage() {
           transition={{ duration: 0.3 }}
           className="pt-8"
         >
-          <h1 className="text-3xl font-bold text-[#1A0918] mb-2">
+          <h1 className="text-2xl md:text-3xl font-bold text-[#1A0918] mb-2">
             Management Fees
           </h1>
           <p className="text-[#6B5A70]">
@@ -350,7 +350,7 @@ export default function FeesPage() {
           variants={item}
           initial="hidden"
           animate="show"
-          className="grid grid-cols-1 md:grid-cols-2 gap-4"
+          className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6"
         >
           <div className="glass-card p-6">
             <h3 className="text-sm font-medium text-[#9B8FA0] mb-2">
