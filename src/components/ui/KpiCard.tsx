@@ -38,27 +38,34 @@ export function KpiCard({
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="glass-card p-4 md:p-6"
+      className="glass-card p-4 md:p-5 flex flex-col h-full"
     >
-      <div className="flex items-start justify-between mb-3 md:mb-4">
-        <div>
-          <p className="text-sm font-medium text-[#9B8FA0] mb-1">{title}</p>
-          {subtitle && <p className="text-xs text-[#9B8FA0]">{subtitle}</p>}
-        </div>
-        {icon && <div className="text-[#702963]">{icon}</div>}
+      <div className="flex items-start justify-between mb-auto">
+        <p className="text-xs font-medium text-[#9B8FA0]">{title}</p>
+        {icon && (
+          <div className="text-[#702963] opacity-50 flex-shrink-0 ml-2">
+            {icon}
+          </div>
+        )}
       </div>
 
-      <div className="flex items-end justify-between">
-        <p className="text-2xl md:text-3xl font-bold text-[#1A0918]">{value}</p>
+      <div className="mt-3">
+        <p className="text-lg md:text-xl font-bold text-[#1A0918] leading-tight">
+          {value}
+        </p>
+      </div>
 
-        {change !== undefined && (
+      <div className="mt-2 h-5">
+        {change !== undefined ? (
           <div className={`flex items-center gap-1 ${getTrendColor()}`}>
             {getTrendIcon()}
-            <span className="text-sm font-semibold">
+            <span className="text-xs font-semibold">
               {Math.abs(change).toFixed(1)}%
             </span>
           </div>
-        )}
+        ) : subtitle ? (
+          <p className="text-xs text-[#9B8FA0]">{subtitle}</p>
+        ) : null}
       </div>
     </motion.div>
   );

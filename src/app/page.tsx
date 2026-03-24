@@ -67,19 +67,16 @@ export default function DashboardHome() {
         {
           title: t.overview.activeClients,
           value: `${kpis.activeClients} / ${kpis.totalClients}`,
-          subtitle: "of total clients",
           icon: <Users size={20} />,
         },
         {
           title: t.overview.estimatedCommission,
           value: formatCurrency(kpis.estimatedQuarterlyCommission),
-          subtitle: "Running estimate",
           icon: <Coins size={20} />,
         },
         {
           title: "Next Payout",
           value: getNextPayoutDate(),
-          subtitle: "Date countdown",
           icon: <Calendar size={20} />,
         },
         {
@@ -110,7 +107,7 @@ export default function DashboardHome() {
       {/* Welcome */}
       <motion.div variants={itemVariants}>
         <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1A0918] mb-1">
-          {t.overview.welcome}, {profile?.name || "Marc"}.
+          {t.overview.welcome}, {profile?.name || "Marc"}
         </h1>
         <p className="text-[#9B8FA0]">{t.overview.subtitle}</p>
       </motion.div>
@@ -118,7 +115,7 @@ export default function DashboardHome() {
       {/* KPI Cards */}
       <motion.div
         variants={containerVariants}
-        className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
+        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
       >
         {loading
           ? Array.from({ length: 5 }).map((_, i) => (
