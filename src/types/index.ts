@@ -1,14 +1,20 @@
 // Client/Customer types
-export type ClientStatus = 'invited' | 'kyc_pending' | 'kyc_approved' | 'first_deposit' | 'active' | 'cancelled';
+export type ClientStatus =
+  | "invited"
+  | "kyc_pending"
+  | "kyc_approved"
+  | "first_deposit"
+  | "active"
+  | "cancelled";
 
 export interface Client {
   id: string;
   name: string;
   email: string;
-  type: 'individual' | 'business';
+  type: "individual" | "business";
   status: ClientStatus;
   aum: number;
-  currency: 'EUR' | 'USD';
+  currency: "EUR" | "USD";
   joinDate: string;
   kycCompletedDate?: string;
   firstDepositDate?: string;
@@ -53,7 +59,7 @@ export interface QuarterlyPayout {
   amount: number;
   averageAum: number;
   clientCount: number;
-  status: 'paid' | 'pending' | 'processing';
+  status: "paid" | "pending" | "processing";
   paidDate?: string;
 }
 
@@ -72,12 +78,12 @@ export interface Transaction {
   id: string;
   clientId: string;
   clientName: string;
-  type: 'deposit' | 'withdrawal';
+  type: "deposit" | "withdrawal";
   amount: number;
-  currency: 'EUR' | 'USD';
+  currency: "EUR" | "USD";
   date: string;
   product: string;
-  status: 'completed' | 'pending' | 'processing';
+  status: "completed" | "pending" | "processing";
 }
 
 // Dashboard KPI types
@@ -115,7 +121,7 @@ export interface Invitation {
   email: string;
   name: string;
   sentDate: string;
-  status: 'sent' | 'opened' | 'registered' | 'expired';
+  status: "sent" | "opened" | "registered" | "expired";
   referralCode: string;
 }
 
@@ -127,14 +133,14 @@ export interface WealthManagerProfile {
   email: string;
   phone: string;
   partnerSince: string;
-  payoutMethod: 'bank_transfer' | 'byzantine_prime';
+  payoutMethod: "bank_transfer" | "byzantine_prime";
   bankDetails?: {
     iban: string;
     bic: string;
     bankName: string;
   };
-  language: 'en' | 'fr';
+  language: "en" | "fr";
 }
 
 // i18n
-export type Locale = 'en' | 'fr';
+export type Locale = "en" | "fr";

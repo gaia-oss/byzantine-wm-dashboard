@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import type { Invitation } from '@/types';
+import type { Invitation } from "@/types";
 
 interface InvitationsTableProps {
   invitations: Invitation[];
@@ -18,13 +18,16 @@ interface InvitationsTableProps {
 }
 
 const BADGE_CLASSES: Record<string, string> = {
-  sent: 'badge-purple',
-  opened: 'badge-info',
-  registered: 'badge-success',
-  expired: 'badge-danger',
+  sent: "badge-purple",
+  opened: "badge-info",
+  registered: "badge-success",
+  expired: "badge-danger",
 };
 
-export function InvitationsTable({ invitations, translations: t }: InvitationsTableProps) {
+export function InvitationsTable({
+  invitations,
+  translations: t,
+}: InvitationsTableProps) {
   const statusLabels: Record<string, string> = {
     sent: t.sent,
     opened: t.opened,
@@ -35,7 +38,9 @@ export function InvitationsTable({ invitations, translations: t }: InvitationsTa
   return (
     <div className="glass-card overflow-hidden">
       <div className="p-6 border-b border-border-light">
-        <h2 className="text-lg font-semibold text-text-primary">{t.pendingInvites}</h2>
+        <h2 className="text-lg font-semibold text-text-primary">
+          {t.pendingInvites}
+        </h2>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full data-table">
@@ -55,12 +60,15 @@ export function InvitationsTable({ invitations, translations: t }: InvitationsTa
                 <td>{invitation.name}</td>
                 <td>{new Date(invitation.sentDate).toLocaleDateString()}</td>
                 <td>
-                  <span className={`badge ${BADGE_CLASSES[invitation.status] || 'badge-purple'}`}>
+                  <span
+                    className={`badge ${BADGE_CLASSES[invitation.status] || "badge-purple"}`}
+                  >
                     {statusLabels[invitation.status]}
                   </span>
                 </td>
                 <td>
-                  {(invitation.status === 'sent' || invitation.status === 'expired') && (
+                  {(invitation.status === "sent" ||
+                    invitation.status === "expired") && (
                     <button className="text-xs px-3 py-1 bg-byzantine text-white rounded hover:bg-byzantine-dark transition-colors font-medium">
                       {t.resend}
                     </button>

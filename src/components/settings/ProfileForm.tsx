@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import type { WealthManagerProfile } from '@/types';
+import { motion } from "framer-motion";
+import type { WealthManagerProfile } from "@/types";
 
 interface ProfileFormProps {
   profile: WealthManagerProfile;
@@ -19,22 +19,38 @@ interface ProfileFormProps {
   };
 }
 
-export function ProfileForm({ profile, onChange, onSave, saveMessage, translations: t }: ProfileFormProps) {
+export function ProfileForm({
+  profile,
+  onChange,
+  onSave,
+  saveMessage,
+  translations: t,
+}: ProfileFormProps) {
   const formatPartnerSince = (dateString: string) => {
-    return new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date(dateString));
+    return new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }).format(new Date(dateString));
   };
 
-  const fields: { key: keyof WealthManagerProfile; label: string; type: string }[] = [
-    { key: 'name', label: t.name, type: 'text' },
-    { key: 'company', label: t.company, type: 'text' },
-    { key: 'email', label: t.email, type: 'email' },
-    { key: 'phone', label: t.phone, type: 'tel' },
+  const fields: {
+    key: keyof WealthManagerProfile;
+    label: string;
+    type: string;
+  }[] = [
+    { key: "name", label: t.name, type: "text" },
+    { key: "company", label: t.company, type: "text" },
+    { key: "email", label: t.email, type: "email" },
+    { key: "phone", label: t.phone, type: "tel" },
   ];
 
   return (
     <div className="glass-card p-8 space-y-6">
       <div>
-        <h2 className="text-xl font-semibold text-text-primary mb-2">{t.profile}</h2>
+        <h2 className="text-xl font-semibold text-text-primary mb-2">
+          {t.profile}
+        </h2>
         <p className="text-sm text-text-secondary">
           {t.partnerSince}: {formatPartnerSince(profile.partnerSince)}
         </p>
@@ -43,8 +59,14 @@ export function ProfileForm({ profile, onChange, onSave, saveMessage, translatio
       <div className="grid grid-cols-2 gap-6">
         {fields.map(({ key, label, type }) => (
           <div key={key}>
-            <label className="block text-sm font-medium text-text-primary mb-2">{label}</label>
+            <label
+              htmlFor={`profile-${key}`}
+              className="block text-sm font-medium text-text-primary mb-2"
+            >
+              {label}
+            </label>
             <input
+              id={`profile-${key}`}
               type={type}
               value={profile[key] as string}
               onChange={(e) => onChange(key, e.target.value)}
@@ -62,7 +84,11 @@ export function ProfileForm({ profile, onChange, onSave, saveMessage, translatio
           {t.save}
         </button>
         {saveMessage && (
-          <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-sm text-green-600 font-medium">
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-sm text-green-600 font-medium"
+          >
             {saveMessage}
           </motion.span>
         )}

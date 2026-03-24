@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from "react";
 
 interface AsyncState<T> {
   data: T | null;
@@ -25,15 +25,15 @@ export function useAsyncData<T>(
   useEffect(() => {
     let cancelled = false;
 
-    setState(prev => ({ ...prev, loading: true, error: null }));
+    setState((prev) => ({ ...prev, loading: true, error: null }));
 
     fetcher()
-      .then(data => {
+      .then((data) => {
         if (!cancelled) setState({ data, loading: false, error: null });
       })
-      .catch(err => {
+      .catch((err) => {
         if (!cancelled) {
-          console.error('useAsyncData error:', err);
+          console.error("useAsyncData error:", err);
           setState({ data: null, loading: false, error: err.message });
         }
       });

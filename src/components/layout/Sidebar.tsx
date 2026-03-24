@@ -1,17 +1,24 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Users, Coins, Percent, GitPullRequest, Settings } from 'lucide-react';
-import { useI18n } from '@/i18n/context';
+import {
+  Coins,
+  GitPullRequest,
+  LayoutDashboard,
+  Percent,
+  Settings,
+  Users,
+} from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useI18n } from "@/i18n/context";
 
 const navItems = [
-  { href: '/', label: 'nav.overview', icon: LayoutDashboard },
-  { href: '/clients', label: 'nav.clients', icon: Users },
-  { href: '/commissions', label: 'nav.commissions', icon: Coins },
-  { href: '/fees', label: 'nav.fees', icon: Percent },
-  { href: '/pipeline', label: 'nav.pipeline', icon: GitPullRequest },
-  { href: '/settings', label: 'nav.settings', icon: Settings },
+  { href: "/", label: "nav.overview", icon: LayoutDashboard },
+  { href: "/clients", label: "nav.clients", icon: Users },
+  { href: "/commissions", label: "nav.commissions", icon: Coins },
+  { href: "/fees", label: "nav.fees", icon: Percent },
+  { href: "/pipeline", label: "nav.pipeline", icon: GitPullRequest },
+  { href: "/settings", label: "nav.settings", icon: Settings },
 ];
 
 export function Sidebar() {
@@ -19,7 +26,7 @@ export function Sidebar() {
   const { t, locale, setLocale } = useI18n();
 
   const getNavLabel = (labelKey: string) => {
-    const [section, key] = labelKey.split('.');
+    const [section, key] = labelKey.split(".");
     return (t as any)[section]?.[key] || labelKey;
   };
 
@@ -48,8 +55,8 @@ export function Sidebar() {
                   href={item.href}
                   className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all relative ${
                     isActive
-                      ? 'bg-[#F9F0F7] text-[#702963]'
-                      : 'text-[#6B5A70] hover:bg-[#F3EFF5]'
+                      ? "bg-[#F9F0F7] text-[#702963]"
+                      : "text-[#6B5A70] hover:bg-[#F3EFF5]"
                   }`}
                 >
                   {isActive && (
@@ -75,7 +82,9 @@ export function Sidebar() {
               <div className="w-5 h-5 bg-[#702963] rounded flex items-center justify-center">
                 <span className="text-white text-xs font-bold">B</span>
               </div>
-              <span className="text-xs font-semibold text-[#702963]">Partner Program</span>
+              <span className="text-xs font-semibold text-[#702963]">
+                Partner Program
+              </span>
             </div>
             <p className="text-xs text-[#6B5A70] leading-tight mb-2">
               Insured by Aon
@@ -89,21 +98,21 @@ export function Sidebar() {
         {/* Language Switcher */}
         <div className="flex gap-2">
           <button
-            onClick={() => setLocale('en')}
+            onClick={() => setLocale("en")}
             className={`flex-1 px-3 py-2 rounded-lg text-xs font-medium transition-all ${
-              locale === 'en'
-                ? 'bg-[#702963] text-white'
-                : 'bg-[#F3EFF5] text-[#702963] hover:bg-[#E8E0EC]'
+              locale === "en"
+                ? "bg-[#702963] text-white"
+                : "bg-[#F3EFF5] text-[#702963] hover:bg-[#E8E0EC]"
             }`}
           >
             EN
           </button>
           <button
-            onClick={() => setLocale('fr')}
+            onClick={() => setLocale("fr")}
             className={`flex-1 px-3 py-2 rounded-lg text-xs font-medium transition-all ${
-              locale === 'fr'
-                ? 'bg-[#702963] text-white'
-                : 'bg-[#F3EFF5] text-[#702963] hover:bg-[#E8E0EC]'
+              locale === "fr"
+                ? "bg-[#702963] text-white"
+                : "bg-[#F3EFF5] text-[#702963] hover:bg-[#E8E0EC]"
             }`}
           >
             FR

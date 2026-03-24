@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { ClientStatus } from '@/types';
-import { useI18n } from '@/i18n/context';
+import { useI18n } from "@/i18n/context";
+import type { ClientStatus } from "@/types";
 
 interface StatusBadgeProps {
   status: ClientStatus;
@@ -12,39 +12,39 @@ export function StatusBadge({ status }: StatusBadgeProps) {
 
   const getStatusConfig = () => {
     switch (status) {
-      case 'active':
+      case "active":
         return {
-          className: 'badge badge-success',
+          className: "badge badge-success",
           label: (t.funnel as any).active,
         };
-      case 'kyc_pending':
+      case "kyc_pending":
         return {
-          className: 'badge badge-warning',
+          className: "badge badge-warning",
           label: (t.funnel as any).kycPending,
         };
-      case 'kyc_approved':
+      case "kyc_approved":
         return {
-          className: 'badge badge-warning',
+          className: "badge badge-warning",
           label: (t.funnel as any).kycApproved,
         };
-      case 'first_deposit':
+      case "first_deposit":
         return {
-          className: 'badge badge-info',
+          className: "badge badge-info",
           label: (t.funnel as any).firstDeposit,
         };
-      case 'invited':
+      case "invited":
         return {
-          className: 'badge badge-purple',
+          className: "badge badge-purple",
           label: (t.funnel as any).invited,
         };
-      case 'cancelled':
+      case "cancelled":
         return {
-          className: 'badge badge-danger',
+          className: "badge badge-danger",
           label: (t.funnel as any).cancelled,
         };
       default:
         return {
-          className: 'badge badge-purple',
+          className: "badge badge-purple",
           label: status,
         };
     }

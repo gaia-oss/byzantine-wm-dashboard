@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
 interface InviteFormProps {
   referralLink: string;
@@ -26,7 +26,9 @@ export function InviteForm({ referralLink, translations: t }: InviteFormProps) {
   return (
     <div className="glass-card p-6 space-y-6">
       <div>
-        <h2 className="text-xl font-semibold text-text-primary mb-4">Invite a new client</h2>
+        <h2 className="text-xl font-semibold text-text-primary mb-4">
+          Invite a new client
+        </h2>
         <div className="grid grid-cols-12 gap-3 mb-4">
           <input
             type="email"
@@ -60,8 +62,8 @@ export function InviteForm({ referralLink, translations: t }: InviteFormProps) {
             onClick={handleCopyLink}
             className={`px-6 py-3 rounded-lg font-semibold transition-all ${
               copyFeedback
-                ? 'bg-green-500 text-white'
-                : 'bg-byzantine text-white hover:bg-byzantine-dark'
+                ? "bg-green-500 text-white"
+                : "bg-byzantine text-white hover:bg-byzantine-dark"
             }`}
           >
             {copyFeedback ? t.copied : t.copy}

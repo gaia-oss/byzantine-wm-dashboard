@@ -1,37 +1,37 @@
-'use client';
+"use client";
 
-import { useState, useMemo } from 'react';
-import { motion } from 'framer-motion';
-import {
-  ArrowDownLeft,
-  ArrowUpRight,
-  Clock,
-} from 'lucide-react';
-import { Transaction } from '@/types';
-import { useI18n } from '@/i18n/context';
-import { SkeletonCard } from '@/components/ui/Skeleton';
+import { motion } from "framer-motion";
+import { ArrowDownLeft, ArrowUpRight, Clock } from "lucide-react";
+import { useMemo, useState } from "react";
+import { SkeletonCard } from "@/components/ui/Skeleton";
+import { useI18n } from "@/i18n/context";
+import type { Transaction } from "@/types";
 
 interface ActivityFeedProps {
   transactions: Transaction[];
   loading?: boolean;
 }
 
-type FilterType = 'all' | 'deposits' | 'withdrawals';
+type FilterType = "all" | "deposits" | "withdrawals";
 
-export function ActivityFeed({ transactions, loading = false }: ActivityFeedProps) {
+export function ActivityFeed({
+  transactions,
+  loading = false,
+}: ActivityFeedProps) {
   const { t } = useI18n();
-  const [filter, setFilter] = useState<FilterType>('all');
+  const [filter, setFilter] = useState<FilterType>("all");
 
   const filteredTransactions = useMemo(() => {
-    if (filter === 'all') return transactions;
-    if (filter === 'deposits') return transactions.filter((tx) => tx.type === 'deposit');
-    return transactions.filter((tx) => tx.type === 'withdrawal');
+    if (filter === "all") return transactions;
+    if (filter === "deposits")
+      return transactions.filter((tx) => tx.type === "deposit");
+    return transactions.filter((tx) => tx.type === "withdrawal");
   }, [transactions, filter]);
 
   const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('fr-FR', {
-      style: 'currency',
-      currency: 'EUR',
+    return new Intl.NumberFormat("fr-FR", {
+      style: "currency",
+      currency: "EUR",
       maximumFractionDigits: 0,
     }).format(amount);
   };
@@ -44,14 +44,14 @@ export function ActivityFeed({ transactions, loading = false }: ActivityFeedProp
     const diffHours = Math.floor(diffMs / 3600000);
     const diffDays = Math.floor(diffMs / 86400000);
 
-    if (diffMins < 1) return 'Just now';
+    if (diffMins < 1) return "Just now";
     if (diffMins < 60) return `${diffMins}m ago`;
     if (diffHours < 24) return `${diffHours}h ago`;
     if (diffDays < 7) return `${diffDays}d ago`;
 
-    return date.toLocaleDateString('fr-FR', {
-      month: 'short',
-      day: 'numeric',
+    return date.toLocaleDateString("fr-FR", {
+      month: "short",
+      day: "numeric",
     });
   };
 
@@ -66,9 +66,9 @@ export function ActivityFeed({ transactions, loading = false }: ActivityFeedProp
   }
 
   const filters: { label: string; value: FilterType }[] = [
-    { label: t.overview.all || 'All', value: 'all' },
-    { label: t.common.deposit || 'Deposits', value: 'deposits' },
-    { label: t.common.withdrawal || 'Withdrawals', value: 'withdrawals' },
+    { label: t.overview.all || "All", value: "all" },
+    { label: t.common.deposit || "Deposits", value: "deposits" },
+    { label: t.common.withdrawal || "Withdrawals", value: "withdrawals" },
   ];
 
   return (
@@ -80,8 +80,8 @@ export function ActivityFeed({ transactions, loading = false }: ActivityFeedProp
             onClick={() => setFilter(f.value)}
             className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
               filter === f.value
-                ? 'bg-[#702963] text-white'
-                : 'bg-[#F3EFF5] text-[#6B5A70] hover:bg-[#E8E0EC]'
+                ? "bg-[#702963] text-white"
+                : "bg-[#F3EFF5] text-[#6B5A70] hover:bg-[#E8E0EC]"
             }`}
           >
             {f.label}
@@ -122,12 +122,10 @@ export function ActivityFeed({ transactions, loading = false }: ActivityFeedProp
               <div className="flex items-center gap-4">
                 <div
                   className={`p-2.5 rounded-lg ${
-                    tx.type === 'deposit'
-                      ? 'bg-[#DCFCE7]'
-                      : 'bg-[#FEE2E2]'
+                    tx.type === "deposit" ? "bg-[#DCFCE7]" : "bg-[#FEE2E2]"
                   }`}
                 >
-                  {tx.type === 'deposit' ? (
+                  {tx.type === "deposit" ? (
                     <ArrowDownLeft size={18} className="text-[#16A34A]" />
                   ) : (
                     <ArrowUpRight size={18} className="text-[#DC2626]" />
@@ -135,7 +133,9 @@ export function ActivityFeed({ transactions, loading = false }: ActivityFeedProp
                 </div>
 
                 <div className="flex-1">
-                  <p className="text-sm font-semibold text-[#1A0918]">{tx.clientName}</p>
+                  <p className="text-sm font-semibold text-[#1A0918]">
+                    {tx.clientName}
+                  </p>
                   <p className="text-xs text-[#9B8FA0]">{tx.product}</p>
                 </div>
               </div>
@@ -144,14 +144,17 @@ export function ActivityFeed({ transactions, loading = false }: ActivityFeedProp
                 <div className="text-right">
                   <p
                     className={`text-sm font-semibold ${
-                      tx.type === 'deposit'
-                        ? 'text-[#16A34A]'
-                        : 'text-[#DC2626]'
+                      tx.type === "deposit"
+                        ? "text-[#16A34A]"
+                        : "text-[#DC2626]"
                     }`}
                   >
-                    {tx.type === 'deposit' ? '+' : '-'}{formatCurrency(tx.amount)}
+                    {tx.type === "deposit" ? "+" : "-"}
+                    {formatCurrency(tx.amount)}
                   </p>
-                  <p className="text-xs text-[#9B8FA0]">{formatDate(tx.date)}</p>
+                  <p className="text-xs text-[#9B8FA0]">
+                    {formatDate(tx.date)}
+                  </p>
                 </div>
               </div>
             </motion.div>

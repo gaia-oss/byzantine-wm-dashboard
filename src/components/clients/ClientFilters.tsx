@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { Search, Download, Plus } from 'lucide-react';
+import { Download, Plus, Search } from "lucide-react";
+import Link from "next/link";
 
 interface ClientFiltersProps {
   searchTerm: string;
   onSearchChange: (value: string) => void;
-  typeFilter: 'all' | 'individual' | 'business';
-  onTypeChange: (value: 'all' | 'individual' | 'business') => void;
+  typeFilter: "all" | "individual" | "business";
+  onTypeChange: (value: "all" | "individual" | "business") => void;
   statusFilter: string;
   onStatusChange: (value: string) => void;
   translations: {
@@ -55,10 +55,18 @@ export function ClientFilters({
       {/* Filter Row */}
       <div className="flex flex-wrap gap-4">
         <div className="flex items-center gap-2">
-          <label className="text-sm font-medium text-[#6B5A70]">{t.type}:</label>
+          <label
+            htmlFor="type-filter"
+            className="text-sm font-medium text-[#6B5A70]"
+          >
+            {t.type}:
+          </label>
           <select
+            id="type-filter"
             value={typeFilter}
-            onChange={(e) => onTypeChange(e.target.value as 'all' | 'individual' | 'business')}
+            onChange={(e) =>
+              onTypeChange(e.target.value as "all" | "individual" | "business")
+            }
             className="px-3 py-2 bg-[#F8F6FA] border border-[#E8E0EC] rounded-lg text-sm text-[#1A0918] focus:outline-none focus:border-[#702963]"
           >
             <option value="all">{t.all}</option>
@@ -68,8 +76,14 @@ export function ClientFilters({
         </div>
 
         <div className="flex items-center gap-2">
-          <label className="text-sm font-medium text-[#6B5A70]">{t.status}:</label>
+          <label
+            htmlFor="status-filter"
+            className="text-sm font-medium text-[#6B5A70]"
+          >
+            {t.status}:
+          </label>
           <select
+            id="status-filter"
             value={statusFilter}
             onChange={(e) => onStatusChange(e.target.value)}
             className="px-3 py-2 bg-[#F8F6FA] border border-[#E8E0EC] rounded-lg text-sm text-[#1A0918] focus:outline-none focus:border-[#702963]"

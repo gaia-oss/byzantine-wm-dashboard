@@ -2,15 +2,19 @@
  * Shared formatting utilities for the Byzantine WM Dashboard.
  */
 
-export function formatCurrency(amount: number, locale = 'fr-FR', currency = 'EUR'): string {
+export function formatCurrency(
+  amount: number,
+  locale = "fr-FR",
+  currency = "EUR"
+): string {
   return new Intl.NumberFormat(locale, {
-    style: 'currency',
+    style: "currency",
     currency,
     maximumFractionDigits: 0,
   }).format(amount);
 }
 
-export function formatNumber(num: number, locale = 'fr-FR'): string {
+export function formatNumber(num: number, locale = "fr-FR"): string {
   return new Intl.NumberFormat(locale).format(num);
 }
 
@@ -18,21 +22,23 @@ export function formatBps(value: number): string {
   return `${value} bps`;
 }
 
-export function formatDate(dateStr: string, locale = 'fr-FR'): string {
+export function formatDate(dateStr: string, locale = "fr-FR"): string {
   return new Date(dateStr).toLocaleDateString(locale, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 }
 
 export function formatRelativeDate(dateStr: string): string {
   const date = new Date(dateStr);
   const now = new Date();
-  const daysAgo = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24));
+  const daysAgo = Math.floor(
+    (now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24)
+  );
 
-  if (daysAgo === 0) return 'Today';
-  if (daysAgo === 1) return 'Yesterday';
+  if (daysAgo === 0) return "Today";
+  if (daysAgo === 1) return "Yesterday";
   if (daysAgo < 7) return `${daysAgo}d ago`;
   if (daysAgo < 30) return `${Math.floor(daysAgo / 7)}w ago`;
   if (daysAgo < 365) return `${Math.floor(daysAgo / 30)}m ago`;
@@ -61,10 +67,10 @@ export function getNextPayoutDate(): string {
     nextPayout = new Date(now.getFullYear() + 1, 0, 1);
   }
 
-  return nextPayout.toLocaleDateString('fr-FR', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  return nextPayout.toLocaleDateString("fr-FR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 }
 
@@ -74,9 +80,11 @@ export function getNextPayoutDate(): string {
 export function getTierBps(aum: number, year: number): number {
   if (aum < 1_000_000) {
     return year === 1 ? 28 : year === 2 ? 12 : 10;
-  } else if (aum < 5_000_000) {
+  }
+  if (aum < 5_000_000) {
     return year === 1 ? 28 : year === 2 ? 12 : 10;
-  } else if (aum < 10_000_000) {
+  }
+  if (aum < 10_000_000) {
     return year === 1 ? 36 : year === 2 ? 16 : 12;
   }
   return year === 1 ? 40 : year === 2 ? 20 : 15;

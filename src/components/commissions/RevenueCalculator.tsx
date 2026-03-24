@@ -1,9 +1,18 @@
-'use client';
+"use client";
 
-import { useState, useMemo } from 'react';
-import { motion } from 'framer-motion';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { formatCurrency } from '@/lib/format';
+import { motion } from "framer-motion";
+import { useMemo, useState } from "react";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Legend,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
+import { formatCurrency } from "@/lib/format";
 
 export function RevenueCalculator() {
   const [projectedAum, setProjectedAum] = useState(50_000_000);
@@ -13,11 +22,13 @@ export function RevenueCalculator() {
       { limit: 1_000_000, y1: 28, y2: 12, y3: 10 },
       { limit: 5_000_000, y1: 28, y2: 12, y3: 10 },
       { limit: 10_000_000, y1: 36, y2: 16, y3: 12 },
-      { limit: Infinity, y1: 40, y2: 20, y3: 15 },
+      { limit: Number.POSITIVE_INFINITY, y1: 40, y2: 20, y3: 15 },
     ];
 
     let remaining = projectedAum;
-    let year1 = 0, year2 = 0, year3 = 0;
+    let year1 = 0;
+    let year2 = 0;
+    let year3 = 0;
     let prevLimit = 50_000;
 
     for (const tier of tiers) {
@@ -35,31 +46,53 @@ export function RevenueCalculator() {
 
   const chartData = [
     {
-      name: 'Projected Annual Earnings',
-      'Year 1': Math.round(projectedEarnings.year1),
-      'Year 2': Math.round(projectedEarnings.year2),
-      'Year 3+': Math.round(projectedEarnings.year3),
+      name: "Projected Annual Earnings",
+      "Year 1": Math.round(projectedEarnings.year1),
+      "Year 2": Math.round(projectedEarnings.year2),
+      "Year 3+": Math.round(projectedEarnings.year3),
     },
   ];
 
   const yearCards = [
-    { label: 'Year 1', value: projectedEarnings.year1, gradient: 'from-[#16A34A] to-[#10B981]' },
-    { label: 'Year 2', value: projectedEarnings.year2, gradient: 'from-[#F59E0B] to-[#FBBF24]' },
-    { label: 'Year 3+', value: projectedEarnings.year3, gradient: 'from-[#2563EB] to-[#3B82F6]' },
+    {
+      label: "Year 1",
+      value: projectedEarnings.year1,
+      gradient: "from-[#16A34A] to-[#10B981]",
+    },
+    {
+      label: "Year 2",
+      value: projectedEarnings.year2,
+      gradient: "from-[#F59E0B] to-[#FBBF24]",
+    },
+    {
+      label: "Year 3+",
+      value: projectedEarnings.year3,
+      gradient: "from-[#2563EB] to-[#3B82F6]",
+    },
   ];
 
   return (
     <div className="glass-card p-6">
-      <h2 className="text-xl font-bold text-[#1A0918] mb-6">Revenue Projection Calculator</h2>
+      <h2 className="text-xl font-bold text-[#1A0918] mb-6">
+        Revenue Projection Calculator
+      </h2>
 
       <div className="space-y-6">
         {/* Slider */}
         <div className="space-y-3">
           <div className="flex items-center justify-between">
-            <label className="text-sm font-medium text-[#1A0918]">Expected Total AUM at Year End</label>
-            <span className="text-2xl font-bold text-[#702963]">{formatCurrency(projectedAum)}</span>
+            <label
+              htmlFor="aum-slider"
+              className="text-sm font-medium text-[#1A0918]"
+            >
+              Expected Total AUM at Year End
+            </label>
+            <span className="text-2xl font-bold text-[#702963]">
+              {formatCurrency(projectedAum)}
+            </span>
           </div>
           <input
+            id="aum-slider"
             type="range"
             min="1000000"
             max="100000000"
@@ -85,8 +118,12 @@ export function RevenueCalculator() {
               className={`bg-gradient-to-br ${gradient} rounded-lg p-6 text-white`}
             >
               <p className="text-sm font-medium opacity-90 mb-2">{label}</p>
-              <p className="text-3xl font-bold">{formatCurrency(value).split(' ')[0]}</p>
-              <p className="text-xs opacity-75 mt-2">Annualized at {label} rates</p>
+              <p className="text-3xl font-bold">
+                {formatCurrency(value).split(" ")[0]}
+              </p>
+              <p className="text-xs opacity-75 mt-2">
+                Annualized at {label} rates
+              </p>
             </motion.div>
           ))}
         </div>
@@ -94,13 +131,27 @@ export function RevenueCalculator() {
         {/* Chart */}
         <div className="mt-8">
           <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={chartData} margin={{ top: 20, right: 30, left: 0, bottom: 20 }}>
+            <BarChart
+              data={chartData}
+              margin={{ top: 20, right: 30, left: 0, bottom: 20 }}
+            >
               <CartesianGrid strokeDasharray="3 3" stroke="#E0B3D9" />
-              <XAxis dataKey="name" stroke="#9B8FA0" style={{ fontSize: '0.875rem' }} />
-              <YAxis stroke="#9B8FA0" style={{ fontSize: '0.875rem' }} />
+              <XAxis
+                dataKey="name"
+                stroke="#9B8FA0"
+                style={{ fontSize: "0.875rem" }}
+              />
+              <YAxis stroke="#9B8FA0" style={{ fontSize: "0.875rem" }} />
               <Tooltip
-                contentStyle={{ backgroundColor: '#FFFFFF', border: '1px solid #E0B3D9', borderRadius: '8px' }}
-                formatter={(value) => [`€${(value as number).toLocaleString('fr-FR')}`, '']}
+                contentStyle={{
+                  backgroundColor: "#FFFFFF",
+                  border: "1px solid #E0B3D9",
+                  borderRadius: "8px",
+                }}
+                formatter={(value) => [
+                  `€${(value as number).toLocaleString("fr-FR")}`,
+                  "",
+                ]}
               />
               <Legend />
               <Bar dataKey="Year 1" fill="#16A34A" radius={[4, 4, 0, 0]} />
@@ -112,11 +163,19 @@ export function RevenueCalculator() {
 
         {/* Summary */}
         <p className="text-sm text-[#6B5A70] bg-[#F9F0F7] p-4 rounded-lg">
-          If you bring <span className="font-bold text-[#702963]">{formatCurrency(projectedAum)}</span> in AUM
-          by year-end, you&apos;ll earn{' '}
-          <span className="font-bold text-[#16A34A]">{formatCurrency(projectedEarnings.year1)}</span> in Year 1
-          commission, declining to{' '}
-          <span className="font-bold text-[#2563EB]">{formatCurrency(projectedEarnings.year3)}</span> in Year 3+.
+          If you bring{" "}
+          <span className="font-bold text-[#702963]">
+            {formatCurrency(projectedAum)}
+          </span>{" "}
+          in AUM by year-end, you&apos;ll earn{" "}
+          <span className="font-bold text-[#16A34A]">
+            {formatCurrency(projectedEarnings.year1)}
+          </span>{" "}
+          in Year 1 commission, declining to{" "}
+          <span className="font-bold text-[#2563EB]">
+            {formatCurrency(projectedEarnings.year3)}
+          </span>{" "}
+          in Year 3+.
         </p>
       </div>
     </div>

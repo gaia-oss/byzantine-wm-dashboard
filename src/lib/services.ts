@@ -11,37 +11,36 @@
  * - Implement proper error handling
  */
 
-import {
-  mockClients,
-  mockFunnelData,
-  mockTransactions,
-  mockQuarterlyPayouts,
-  mockCommissionBreakdown,
-  mockAumHistory,
-  mockDashboardKPIs,
-  mockInvitations,
-  mockProfile,
-  COMMISSION_TIERS,
-} from './mock-data';
-
 import type {
+  AumDataPoint,
   Client,
   ClientDetail,
   ClientFunnelData,
-  Transaction,
-  QuarterlyPayout,
   CommissionBreakdown,
-  AumDataPoint,
+  CommissionTier,
   DashboardKPIs,
   Invitation,
+  QuarterlyPayout,
+  Transaction,
   WealthManagerProfile,
-  CommissionTier,
-} from '@/types';
+} from "@/types";
+import {
+  COMMISSION_TIERS,
+  mockAumHistory,
+  mockClients,
+  mockCommissionBreakdown,
+  mockDashboardKPIs,
+  mockFunnelData,
+  mockInvitations,
+  mockProfile,
+  mockQuarterlyPayouts,
+  mockTransactions,
+} from "./mock-data";
 
-const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // API configuration - set via environment variable
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || '/api';
+const _API_BASE = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 // ============================================================================
 // DASHBOARD & OVERVIEW ENDPOINTS
@@ -90,10 +89,12 @@ export async function fetchClients(): Promise<Client[]> {
  */
 export async function fetchClientById(clientId: string): Promise<ClientDetail> {
   await delay(300);
-  const client = mockClients.find(c => c.id === clientId);
-  if (!client) throw new Error('Client not found');
+  const client = mockClients.find((c) => c.id === clientId);
+  if (!client) throw new Error("Client not found");
 
-  const clientTransactions = mockTransactions.filter(tx => tx.clientId === clientId);
+  const clientTransactions = mockTransactions.filter(
+    (tx) => tx.clientId === clientId
+  );
   const clientCommissionHistory = mockQuarterlyPayouts; // In production, filter by client
   const clientAumHistory: AumDataPoint[] = mockAumHistory; // In production, filter by client
 
@@ -128,9 +129,11 @@ export async function fetchClientFunnel(): Promise<ClientFunnelData> {
  * if (!response.ok) throw new Error('Failed to fetch client transactions');
  * return response.json();
  */
-export async function fetchClientTransactions(clientId: string): Promise<Transaction[]> {
+export async function fetchClientTransactions(
+  clientId: string
+): Promise<Transaction[]> {
   await delay(300);
-  return mockTransactions.filter(tx => tx.clientId === clientId);
+  return mockTransactions.filter((tx) => tx.clientId === clientId);
 }
 
 // ============================================================================
@@ -146,7 +149,9 @@ export async function fetchClientTransactions(clientId: string): Promise<Transac
  * if (!response.ok) throw new Error('Failed to fetch transactions');
  * return response.json();
  */
-export async function fetchTransactions(limit?: number): Promise<Transaction[]> {
+export async function fetchTransactions(
+  limit?: number
+): Promise<Transaction[]> {
   await delay(300);
   const txs = mockTransactions;
   return limit ? txs.slice(0, limit) : txs;
@@ -179,7 +184,9 @@ export async function fetchQuarterlyPayouts(): Promise<QuarterlyPayout[]> {
  * if (!response.ok) throw new Error('Failed to fetch commission breakdown');
  * return response.json();
  */
-export async function fetchCommissionBreakdown(): Promise<CommissionBreakdown[]> {
+export async function fetchCommissionBreakdown(): Promise<
+  CommissionBreakdown[]
+> {
   await delay(300);
   return mockCommissionBreakdown;
 }
@@ -259,8 +266,8 @@ export async function sendInvitation(
     id: `inv-${Date.now()}`,
     email,
     name,
-    sentDate: new Date().toISOString().split('T')[0],
-    status: 'sent',
+    sentDate: new Date().toISOString().split("T")[0],
+    status: "sent",
     referralCode,
   };
 
@@ -335,8 +342,8 @@ export async function updateClientFee(
   newFee: number
 ): Promise<Client> {
   await delay(500);
-  const client = mockClients.find(c => c.id === clientId);
-  if (!client) throw new Error('Client not found');
+  const client = mockClients.find((c) => c.id === clientId);
+  if (!client) throw new Error("Client not found");
   client.managementFee = newFee;
   return client;
 }
@@ -355,13 +362,13 @@ export async function updateClientFee(
  */
 export async function approveClientKyc(clientId: string): Promise<Client> {
   await delay(600);
-  const client = mockClients.find(c => c.id === clientId);
-  if (!client) throw new Error('Client not found');
-  if (client.status !== 'kyc_pending') {
-    throw new Error('Client KYC is not pending');
+  const client = mockClients.find((c) => c.id === clientId);
+  if (!client) throw new Error("Client not found");
+  if (client.status !== "kyc_pending") {
+    throw new Error("Client KYC is not pending");
   }
-  client.status = 'kyc_approved';
-  client.kycCompletedDate = new Date().toISOString().split('T')[0];
+  client.status = "kyc_approved";
+  client.kycCompletedDate = new Date().toISOString().split("T")[0];
   return client;
 }
 
@@ -386,10 +393,10 @@ export async function recordFirstDeposit(
   amount: number
 ): Promise<Client> {
   await delay(700);
-  const client = mockClients.find(c => c.id === clientId);
-  if (!client) throw new Error('Client not found');
-  client.status = 'first_deposit';
-  client.firstDepositDate = new Date().toISOString().split('T')[0];
+  const client = mockClients.find((c) => c.id === clientId);
+  if (!client) throw new Error("Client not found");
+  client.status = "first_deposit";
+  client.firstDepositDate = new Date().toISOString().split("T")[0];
   client.aum = amount;
   client.totalDeposits = amount;
   return client;
@@ -409,9 +416,9 @@ export async function recordFirstDeposit(
  */
 export async function cancelClient(clientId: string): Promise<Client> {
   await delay(600);
-  const client = mockClients.find(c => c.id === clientId);
-  if (!client) throw new Error('Client not found');
-  client.status = 'cancelled';
+  const client = mockClients.find((c) => c.id === clientId);
+  if (!client) throw new Error("Client not found");
+  client.status = "cancelled";
   client.aum = 0;
   return client;
 }
@@ -424,18 +431,18 @@ export async function cancelClient(clientId: string): Promise<Client> {
  * Generic error handler for API responses
  */
 export async function handleApiError(response: Response): Promise<never> {
-  const contentType = response.headers.get('content-type');
+  const contentType = response.headers.get("content-type");
   let errorMessage = `HTTP ${response.status}`;
 
   try {
-    if (contentType?.includes('application/json')) {
+    if (contentType?.includes("application/json")) {
       const error = await response.json();
       errorMessage = error.message || error.error || errorMessage;
     } else {
       const text = await response.text();
       errorMessage = text || errorMessage;
     }
-  } catch (e) {
+  } catch (_e) {
     // Use default error message
   }
 
@@ -447,8 +454,8 @@ export async function handleApiError(response: Response): Promise<never> {
  */
 export async function withRetry<T>(
   fn: () => Promise<T>,
-  maxRetries: number = 3,
-  delayMs: number = 1000
+  maxRetries = 3,
+  delayMs = 1000
 ): Promise<T> {
   let lastError: Error | null = null;
 
@@ -458,10 +465,10 @@ export async function withRetry<T>(
     } catch (error) {
       lastError = error instanceof Error ? error : new Error(String(error));
       if (attempt < maxRetries - 1) {
-        await delay(delayMs * Math.pow(2, attempt)); // exponential backoff
+        await delay(delayMs * 2 ** attempt); // exponential backoff
       }
     }
   }
 
-  throw lastError || new Error('Max retries exceeded');
+  throw lastError || new Error("Max retries exceeded");
 }

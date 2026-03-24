@@ -11,7 +11,10 @@ Dashboard Next.js pour les CGPs, MFOs, et gestionnaires de patrimoine indépenda
 - `npm run dev` : Dev server (localhost:3000)
 - `npm run build` : Production build (Turbopack)
 - `npm run start` : Start production
-- `npm run lint` : Next.js lint
+- `npm run check` : Lint + format (check only, Biome)
+- `npm run check:fix` : Lint + format + fix (Biome)
+- `npm run test` : Run tests (Vitest, watch mode)
+- `npm run test:run` : Run tests once (CI)
 
 ## Stack technique
 
@@ -22,17 +25,20 @@ Dashboard Next.js pour les CGPs, MFOs, et gestionnaires de patrimoine indépenda
 - **Tables** : @tanstack/react-table (prêt, pas encore utilisé directement)
 - **Animations** : Framer Motion (stagger, fade-in)
 - **Icons** : Lucide React
+- **Linting/Formatting** : Biome (remplace ESLint + Prettier). Double quotes, semicolons, trailing commas.
+- **Testing** : Vitest
 - **Font** : Manrope (Google Fonts)
 - **Path alias** : `@/*` → `src/*`
 
-## Ce qu'on n'utilise PAS (encore)
+## Ce qu'on n'utilise PAS
 
-- ESLint custom / Prettier / Biome (uniquement `next lint`)
+- ESLint / Prettier (Biome)
+- Jest (Vitest)
 - Redux / Zustand / TanStack Query (React Context + hook useAsyncData)
 - SCSS Modules (Tailwind CSS avec design tokens)
-- Jest / Vitest (pas de tests encore)
 - Axios (fetch natif dans le service layer)
-- Auth / ECDSA (mock data, pas d'API réelle)
+- styled-components / Emotion (Tailwind)
+- Auth / ECDSA (mock data, pas d'API réelle pour l'instant)
 
 ## Structure des dossiers
 
@@ -65,11 +71,23 @@ src/
 │   ├── mock-data.ts        # Demo data (15 clients, 20 transactions, KPIs)
 │   └── services.ts         # API service layer avec TODO pour branchement réel
 ├── i18n/
-│   ├── context.tsx          # React Context pour locale (EN/FR)
-│   └── translations.ts     # ~156 clés de traduction
+│   ├── context.tsx         # React Context pour locale (EN/FR)
+│   └── translations.ts    # ~156 clés de traduction
 └── types/
     └── index.ts            # Toutes les interfaces TypeScript
 ```
+
+## Conventions code
+
+- Double quotes (") partout (configuré dans Biome)
+- Semicolons obligatoires
+- Trailing commas
+- Sentence case dans l'UI (pas de Title Case)
+- `"use client"` en haut de chaque fichier qui utilise des hooks
+
+## Formatting
+
+Après chaque modification, lancer `npm run check:fix` pour lint, format, et organiser les imports. Config dans `biome.json`.
 
 ## Conventions
 
@@ -84,7 +102,7 @@ Les pages dans `app/` ne doivent contenir **aucune logique métier ni UI lourde*
 
 - Un fichier `.tsx` par composant, dans le dossier feature correspondant
 - Props typées via interface dans le même fichier
-- Named exports (pas de default exports)
+- Named exports (pas de default exports, sauf pages App Router)
 - `'use client'` en haut de chaque composant qui utilise des hooks
 
 ### Formatting partagé

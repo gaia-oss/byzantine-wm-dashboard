@@ -1,37 +1,37 @@
-'use client';
+"use client";
 
 interface SkeletonProps {
-  variant?: 'card' | 'row' | 'chart' | 'text';
+  variant?: "card" | "row" | "chart" | "text";
   width?: string;
   height?: string;
   className?: string;
 }
 
 export function Skeleton({
-  variant = 'card',
-  width = '100%',
-  height = '100%',
-  className = '',
+  variant = "card",
+  width = "100%",
+  height = "100%",
+  className = "",
 }: SkeletonProps) {
-  const baseClass =
-    'bg-[#E8E0EC] rounded-lg animate-pulse';
+  const baseClass = "bg-[#E8E0EC] rounded-lg animate-pulse";
 
   const variantClasses = {
-    card: 'w-full h-32',
-    row: 'w-full h-12',
-    chart: 'w-full h-64',
-    text: 'w-48 h-4',
+    card: "w-full h-32",
+    row: "w-full h-12",
+    chart: "w-full h-64",
+    text: "w-48 h-4",
   };
 
-  const selectedHeight = height !== '100%' ? height : variantClasses[variant].split(' ')[1];
-  const selectedWidth = width !== '100%' ? width : 'w-full';
+  const selectedHeight =
+    height !== "100%" ? height : variantClasses[variant].split(" ")[1];
+  const selectedWidth = width !== "100%" ? width : "w-full";
 
   return (
     <div
       className={`${baseClass} ${selectedWidth} ${selectedHeight} ${className}`}
       style={{
-        width: width !== '100%' ? width : undefined,
-        height: height !== '100%' ? height : undefined,
+        width: width !== "100%" ? width : undefined,
+        height: height !== "100%" ? height : undefined,
       }}
     />
   );

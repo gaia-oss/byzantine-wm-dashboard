@@ -1,28 +1,28 @@
-'use client';
+"use client";
 
-import { usePathname } from 'next/navigation';
-import { Bell, ChevronDown } from 'lucide-react';
-import { useI18n } from '@/i18n/context';
+import { Bell, ChevronDown } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { useI18n } from "@/i18n/context";
 
 const pageLabels: Record<string, string> = {
-  '/': 'nav.overview',
-  '/clients': 'nav.clients',
-  '/commissions': 'nav.commissions',
-  '/fees': 'nav.fees',
-  '/pipeline': 'nav.pipeline',
-  '/settings': 'nav.settings',
+  "/": "nav.overview",
+  "/clients": "nav.clients",
+  "/commissions": "nav.commissions",
+  "/fees": "nav.fees",
+  "/pipeline": "nav.pipeline",
+  "/settings": "nav.settings",
 };
 
 export function Header() {
   const pathname = usePathname();
   const { t } = useI18n();
 
-  const labelKey = pageLabels[pathname] || 'nav.overview';
-  const [section, key] = labelKey.split('.');
-  const pageTitle = (t as any)[section]?.[key] || 'Overview';
+  const labelKey = pageLabels[pathname] || "nav.overview";
+  const [section, key] = labelKey.split(".");
+  const pageTitle = (t as any)[section]?.[key] || "Overview";
 
   // Mock AUM value - in real app this would come from context/state
-  const totalAUM = '€32.5M';
+  const totalAUM = "€32.5M";
 
   return (
     <header className="border-b border-[var(--color-border)] bg-white px-8 py-4 flex items-center justify-between">
